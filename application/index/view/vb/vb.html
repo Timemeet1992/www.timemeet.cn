@@ -1,0 +1,213 @@
+
+
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="IE=edge" >
+    <title>only手机商城</title>
+    <meta name="keywords" content='only手机商城'/>
+    <meta name="description" content='only手机商城'/>
+
+    <link href="__SITE_STATIC__/css/global.css" rel="stylesheet" type="text/css"/>
+    <link href="__SITE_STATIC__/css/layout.css" rel="stylesheet" type="text/css"/>
+    <link href="__SITE_STATIC__/css/dialog.css" rel="stylesheet" type="text/css"/>
+
+
+    <link href="__SITE_STATIC__/css/dialog.css" rel="stylesheet" type="text/css"/>
+    <link href="__SITE_STATIC__/css/vcoins-list.css" rel="stylesheet" type="text/css"/>
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min_23e126e.js"></script>
+    <![endif]-->
+
+</head>
+<body class="">
+    {include file="header" /}
+    <div id="content" class="cl">
+
+
+        <input type="hidden" name="pageNavMappingIndex" id="pageNavMappingIndex" value="2"/>
+        <input type="hidden" class="j_queryParam" id="j_sortBy" name="sortBy" value=""/>
+        <input type="hidden" class="j_queryParam" id="j_sortOrder" name="sortOrder" value="asc"/>
+        <input type="hidden" class="j_queryParam" id="j_classify" name="classify" value="all"/>
+        <input type="hidden" class="j_queryParam" id="j_needCheckVcoin" name="needCheckVcoin" value=""/>
+
+        <div class="wrapper">
+            <div class="crumbs">您的位置:<a class="first" href="{:url('index/index/index')}">首页</a><b></b>V币商品&nbsp;</div>
+
+            <div class="banner">
+                <img width="100%" src="__SITE_STATIC__/img/banner-vcoins_a945dbc.jpg"/>
+            </div>
+            <div class="container">
+
+                <div class="filter">
+                    <div class="f-line title">
+                        <h2>
+                            <i class="icon-gift"></i>全部礼品
+                        </h2>
+                    </div>
+                    <div class="f-line">
+                        <dl>
+                            <dt class="fl-title fl-item">分类：</dt>
+                            <dd data-classify="all"
+                            class="fl-item j_selectClassify on">
+                            <a href="{:url('index/vb/vb')}">全部</a>
+                        </dd>
+                        {if !empty($classname)}
+                        {foreach $classname as $value}
+                        <dd data-classify="cardcoupons"
+                        class="fl-item j_selectClassify"><a href="{:url('index/vb/vb')}?cid={$value->cid}">{$value->classname}</a>
+                        {/foreach}
+                        {/if}
+                    </dd>
+
+                </dl>
+            </div>
+            <div class="f-line sort">
+                <dl>
+                    <dt class="fl-title fl-item">排序：</dt>
+                    <dd data-sortBy=""
+                    class="fl-item j_selectOrder  on"><a href="{:url('index/vb/vb')}">默认</a>
+                </dd>
+                <dd data-sortBy="vcoin"
+                class="fl-item j_selectOrder
+                ">
+                <a href="{:url('index/vb/vb')}?sort=1">V币数</a><i class="icon-sort"></i></dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="list-box">
+        <ul class="prod-list cl">
+            {if $goods}
+            {foreach $goods as $value}
+            <li class="prod-item ">
+                <a target="_blank" href="{:url('index/vb/vbone')}?gid={$value->gid}">
+                    <div class="figure">
+                        <img src="__SITE__{$value->exhibiturl}"/>
+                    </div>
+                    <h3 title="{$value->goodsname}">{$value->goodsname}</h3>
+                    <p class="price"><span class="blue">{$value->price}</span></p>
+                </a>
+            </li>
+            {/foreach}
+            {/if}
+        </ul>
+    </div>
+
+    <nav class="pagination">
+
+        <a class="num current" href='javascript:void(0)'>1</a>
+        <a class="num" href='/vcoins?pageNum=2&pageSize=12&sortBy=&sortOrder=asc&needCheckVcoin='>2</a>
+        <a class="next" href='/vcoins?pageNum=2&pageSize=12&sortBy=&sortOrder=asc&needCheckVcoin='></a>
+        <label><input class="go-num" type="text"> / 2</label><a data-total="2" data-url="/vcoins?pageNum=PAGENUM&pageSize=12&sortBy=&sortOrder=asc&needCheckVcoin=" class="go j_go" href="javascript:void(0)"></a>
+    </nav>
+
+    <div class="module-explain">
+        <h2><i class="icon-coins"></i>V币兑换规则</h2>
+        <dl>
+            <dt>获得V币</dt>
+            <dd>
+                <p>1、在官方商城购买产品即可获得一定数量的V币，例如：您的订单商品总额为3498元，无论是否享受优惠，在订单完成后都可获得3498 V币；如果购买商品发生退货行为，官方商城将扣除您账户中对应数量的V币，账号若有退货未扣减的情况，未扣减部分V币为无效V币</p>
+                <p>2、参加官方商城的相关活动获得V币</p>
+            </dd>
+            <dt>查看V币</dt>
+            <dd>
+                <p>进入官方商城个人中心--我的V币</p>
+            </dd>
+            <dt>使用V币</dt>
+            <dd>
+                <p>1、兑换优惠券，用于再次购物时，结算抵扣对应金额</p>
+                <p>2、兑换礼品，V币兑换实物礼品均包邮；V币兑换的虚拟卡类请凭订单号联系在线客服领取</p>
+                <p>3、V币订单提交支付之后，不支持退货处理，如果商品存在质量问题，请联系在线客服处理</p>
+                <p>4、使用无效V币兑换的订单将作废处理，并在审核中扣除此部分V币</p>
+            </dd>
+            <dt>V币有效期</dt>
+            <dd>
+                <p>1、官方商城个人中心的V币永久有效，但兑换的优惠券有一定的使用期限</p>
+                <p>2、发生退货的V币，官方商城做扣除处理；对于恶意下单的用户账号，官方商城会计入黑名单，大批量恶意刷单，官方商城保留法律允许范围的追究权限</p>
+            </dd>
+        </dl>
+    </div>
+</div>
+
+</div>
+
+<!-- z-contain -->
+</div>
+{include file="footer" /}
+<div id="side-bar">
+    <ul>
+        <li><a class="service" id="J_online-service" target="_blank" href="http://crm2.qq.com/page/portalpage/wpa.php?uin=4007161118&aty=0&a=0&curl=&ty=1"></a></li>
+        <li>
+            <a class="qrcode">
+                <div class="qrcode-container">
+                    <img src="__SITE_STATIC__/img/qrcode_6a6b792.png">
+                    <p>支付宝扫码<br>关注享最新活动福利</p>
+                </div>
+            </a>
+        </li>
+        <li class="last">
+            <a class="feedback" id="J_feedback">
+                <div class="feedback-container" id="J_feedback-container">
+                    <span class="close" id="J_feedback-close"></span>
+                    <p class="title">意见反馈</p>
+                    <div class="problem-container">
+                        <p id="J_feedback-typeDesc" class="problem">请选择问题类型</p>
+                        <select id="J_feedback-typeSelect">
+                            <option value="0" disabled="disabled" selected="selected">请选择问题类型</option>
+                            <option value="1">购物流程（页面浏览、下单、支付等）</option>
+                            <option value="2">服务问题（物流时效、客服态度、退换货、售后维修等）</option>
+                            <option value="3">商品质量（手机、配件问题）</option>
+                            <option value="4">优化建议（活动、服务、购物体验等）</option>
+                            <option value="5">其他问题</option>
+                        </select>
+                    </div>
+                    <textarea id="J_feedback-content" class="" maxlength="200" placeholder="请输入您的建议或具体问题，我们将不断改进。"></textarea>
+                    <input id="J_feedback-contact" class="contact-way" type="text" maxlength="50" placeholder="邮箱或者only账户 （选填）">
+                    <span id="J_feedback-kaptchaButton" class="change-code">看不清，换一张</span>
+                    <img id="J_feedback-kaptchaImage" class="code">
+                    <input id="J_feedback-securityCode" class="code-input" type="text" placeholder="输入右侧验证码">
+                    <p id="J_feedback-validateMsg" class="error">请输入正确的信息</p>
+                    <button id="J_feedback-submitButton">提交</button>
+                </div>
+            </a>
+        </li>
+        <li class="hide" id="J_backtop"><a class="backtop"></a></li>
+    </ul>
+</div><script>
+var webCtx = "";
+var passportLoginUrlPrefix = "https://passport.vivo.com.cn/v3/web/login/authorize?client_id=3&redirect_uri=";
+</script>
+<script src="__SITE_STATIC__/js/jquery.min_6163309.js"></script>
+<script src="__SITE_STATIC__/js/jquery.cookie_a5283b2.js"></script>
+<script src="__SITE_STATIC__/js/jquery.lazyload_546c1da.js"></script>
+<script src="__SITE_STATIC__/js/jquery-placeholder_fb6154c.js"></script>
+<script src="__SITE_STATIC__/js/vivo-common_38aa2f0.js"></script>
+<script src="__SITE_STATIC__/js/dialog_6a2b3fb.js"></script>
+<script src="__SITE_STATIC__/js/vivo-stat_265b49b.js"></script>
+<script src="__SITE_STATIC__/js/login_confirm_485e7b4.js"></script>
+<script>
+    var imgHost = "https://swsdl.vivo.com.cn/vivoshop/";
+</script>
+<script src="__SITE_STATIC__/js/jquery.validate.min_76c74f2.js"></script>
+<script src="__SITE_STATIC__/js/simplestorage_f115cd4.js"></script>
+<script src="__SITE_STATIC__/js/list-hover_a2668cb.js"></script>
+<script src="__SITE_STATIC__/js/dialog_6a2b3fb.js"></script>
+<script src="__SITE_STATIC__/js/index_1a13f39.js"></script>
+
+<script>
+    //百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?0a38f90134ba281b974d46dfeec121e0";
+        hm.async = true;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>

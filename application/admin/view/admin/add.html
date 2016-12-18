@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="renderer" content="webkit">
+  <title></title>
+  <link rel="stylesheet" href="__ADMIN_STATIC__/css/pintuer.css">
+  <link rel="stylesheet" href="__ADMIN_STATIC__/css/admin.css">
+  <script src="__ADMIN_STATIC__/js/jquery.js"></script>
+  <script src="__ADMIN_STATIC__/js/pintuer.js"></script>
+</head>
+<body>
+  <div class="panel admin-panel">
+    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>{if $goods}修改商品{else}添加商品{/if}</strong></div>
+    <div class="body-content">
+      {if $goods}
+      <form method="post" class="form-x" enctype="multipart/form-data" action="{:url('admin/admin/altlist')}">  
+      <input type="hidden" name="gid" value="{$goods['gid']}">
+        <div class="form-group">
+          <div class="label">
+            <label>商品名称：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input w50" value="{$goods['goodsname']}" name="goodsname" data-validate="required:商品名称" />
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>图片：</label>
+          </div>
+            <div class="field">
+            <input type="text" id="url1" name="exhibiturl" class="input tips" style="width:25%; float:left;"  value="{$goods['exhibiturl']}"  data-toggle="hover" data-place="right" data-image="{$goods['exhibiturl']}" />
+            <input type="button" class="button bg-blue margin-left" id="image1" value="+ 浏览上传"  style="float:left;">
+            <div class="tipss">图片尺寸：500*500</div>
+          </div>
+        </div>     
+        <div class="form-group">
+          <div class="label">
+            <label>卖家：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input w50" value="{$goods['username']}"  readonly/>
+            <input type="hidden" class="input w50" name="sellerid" value="{$goods['sellerid']}"  readonly/>
+            <div class="tips"></div>
+          </div>
+        </div>
+        <if condition="$iscid eq 1">
+          <div class="form-group">
+            <div class="label">
+              <label>商品分类：</label>
+            </div>
+            <div class="field">
+              <input type="text" class="input w50" value="{$goods['father']}/{$goods['gcs']}/{$goods['classname']}" readonly/>
+              <input type="hidden" class="input w50" name="classify" value="{$goods['classify']}" readonly/>
+              <div class="tips"></div>
+            </div>
+          </div>
+        </if>
+        <div class="form-group">
+          <div class="label">
+            <label>价格：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="price" value="{$goods['price']}"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>简介：</label>
+          </div>
+          <div class="field">
+            <textarea class="input" name="summary" style=" height:90px;">{$goods['summary']}</textarea>
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>详情：</label>
+          </div>
+          <div class="field">
+            <textarea name="describe" class="input" style="height:450px; border:1px solid #ddd;">{$goods['describe']}</textarea>
+            <div class="tips"></div>
+          </div>
+        </div>
+        
+        <div class="clear"></div>
+        <div class="form-group">
+          <div class="label">
+            <label>折扣(0-10)：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="discount" value="{$goods['discount']}" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>经验值：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="exp" value="{$goods['exp']}"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>积分值：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="integral" value="{$goods['integral']}"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>发布时间：</label>
+          </div>
+          <div class="field"> 
+            <script src="js/laydate/laydate.js"></script>
+            <input type="text" class="laydate-icon input w50" name="create_time" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$goods['create_time']}"  data-validate="required:日期不能为空" style="padding:10px!important; height:auto!important;border:1px solid #ddd!important;" readonly/>
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>修改时间：</label>
+          </div>
+          <div class="field"> 
+            <script src="js/laydate/laydate.js"></script>
+            <input type="text" class="laydate-icon input w50" name="update_time" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$goods['update_time']}"  data-validate="required:日期不能为空" style="padding:10px!important; height:auto!important;border:1px solid #ddd!important;" readonly/>
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>关注次数：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input w50" name="attention" value="{$goods['attention']}" readonly/>
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label></label>
+          </div>
+          <div class="field">
+            <button class="button bg-main icon-check-square-o" type="submit"> 修改</button>
+          </div>
+        </div>
+        </form>
+        {else}
+        <form method="post" class="form-x" enctype="multipart/form-data" action="{:url('admin/admin/addlist')}">
+        <div class="form-group">
+          <div class="label">
+            <label>商品名称：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input w50" value="" name="goodsname" data-validate="required:商品名称" />
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>图片：</label>
+          </div>
+
+
+
+<input type="file" name="image" /> <br>
+<!--           <div class="field">
+            <input type="file" id="url1" name="exhibiturl" class="input tips" style="width:25%; float:left;"  value=""  data-toggle="hover" data-place="right" data-image="" />
+            <input type="submit" class="button bg-blue margin-left" id="image1" value="+ 浏览上传"  style="float:left;">
+            <div class="tipss">图片尺寸：500*500</div>
+          </div> -->
+        </div>
+        <if condition="$iscid eq 1">
+          <div class="form-group">
+            <div class="label">
+              <label>商品分类：</label>
+            </div>
+            <div class="field">
+              <input type="text" class="input w50" name="classify" value="" />
+              <div class="tips"></div>
+            </div>
+          </div>
+        </if>     
+        <div class="form-group">
+          <div class="label">
+            <label>价格：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="price" value=""/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>简介：</label>
+          </div>
+          <div class="field">
+            <textarea class="input" name="summary" style=" height:90px;"></textarea>
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>详情：</label>
+          </div>
+          <div class="field">
+            <textarea name="describe" class="input" style="height:450px; border:1px solid #ddd;"></textarea>
+            <div class="tips"></div>
+          </div>
+        </div>
+        
+        <div class="clear"></div>
+        <div class="form-group">
+          <div class="label">
+            <label>折扣(0-10)：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="discount" value="" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>经验值：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="exp" value=""/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>积分值：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="integral" value=""/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label></label>
+          </div>
+          <div class="field">
+            <button class="button bg-main icon-check-square-o" type="submit"> 添加</button>
+          </div>
+        </div>
+        {/if}
+      </form>
+    </div>
+  </div>
+
+</body></html>

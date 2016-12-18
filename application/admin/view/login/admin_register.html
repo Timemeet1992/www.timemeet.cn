@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="__ADMIN_STATIC__/css/login.css" style="text/css">
+	<script type="text/javascript" src="__ADMIN_STATIC__/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="__ADMIN_STATIC__/js/login.js"></script>
+	<script type="text/javascript">
+
+		function checkForms(){
+			var check = true;
+			check = checkusername() && check;
+			check = checkpassword() && check;
+			return check;
+		}
+
+		function isEmail(str){
+			if(str.indexOf("@")>0){
+				return true;
+			}else{
+				return false;
+			}
+		}
+
+		function checkusername(){
+			var eValue= $.trim($("#_account").attr("value"));
+			if(eValue.length < 0 || eValue == '邮箱/手机号/用户名'){
+				inner("error_account", "帐号不能为空");
+				showErrorIcon("_account", "0");
+				return false;
+			}else{
+				return true;
+			}
+		}
+
+		//密码格式验证
+		function checkpassword(){
+			var pValue=$.trim($("#_pwd").attr("value"));
+			if(pValue==null || pValue==""){
+				inner("error_pwd", "密码不能为空");
+				showErrorIcon("_pwd", "0");
+				return false;
+			}else{
+				return true;
+			}
+		}
+
+		window.onload=function() {
+			var stat = "";	
+			var msg = "";
+			if(stat.length!=0)
+			{
+				if(stat=="522" || stat=="400")
+				{
+					inner("error_account", msg);
+					showErrorIcon("_account", "0");
+				}
+				else if(stat=="523")
+				{
+					inner("error_pwd", msg);
+					showErrorIcon("_pwd", "0");
+				}
+			}
+
+			// $('#_account').blur(function (){
+			// 	$.ajax({
+			// 		type: "POST",
+			// 		url: "http://www.timemeet.cn/admin/Auth/getregname",
+			// 		data: "username=jqy",
+			// 		success: function(msg){
+			// 			msg = eval('(' + msg + ')');
+			// 			if(!(msg.status)){
+			// 				inner("error_account", msg.msg);
+			// 			}
+			// 		}
+			// 	});
+			// });
+		};
+function checkEmailOnline()
+{
+	var email= $.trim($("#_email").attr("value"));
+    if(email.length == 0 ){
+        inner("error_email", "邮箱不能为空");
+        showErrorIcon("_email", "0");
+		return false;
+	}
+    else if(!patternEmail.test(email))
+    {
+    	inner("error_email", "请输入有效的邮箱");
+        showErrorIcon("_email", "0");
+		return false;
+    }
+    $.ajax({
+		url:"/v3/web/checkRegAccount",
+		data:"account="+email+"&type=1",
+		success:function(json){
+			if(json.stat!="200"){
+		        inner("error_email", json.msg);
+		        showErrorIcon("_email", "0");
+				return false;
+			}
+			else
+			{
+				showErrorIcon("_email", "1");
+				return true;
+			}
+		},
+		error:function(){
+			showErrorIcon("_email", "1");
+			return true;
+			//inner("error_email", "系统出现异常，请联系管理员");
+			//showErrorIcon("_email", "0");
+		},
+		type:"post",
+		async: true,
+		dataType:"json"
+	});
+}
+</script>
+    <title>唯我帐号注册</title>
+
+</head>
+<body >
+	<a class="banner_bg" href="javascript:;"></a>
+	<div class="middle_box">
+		<div class="hide_out">
+			<div class="left">
+				<!-- 登录 -->
+				<div class="fieldset-section"  >
+
+					<form id="login_form" name="form" action="{:url('admin/login/doRegister')}" method="post">
+						<p class="sub-title">唯我帐号注册<span class="sub-title " style="font-size:12px; float:right; padding-right:40px;">已有帐号?<a class="link" href="{:url('admin/login/login')}">立即登录</a></span></p>
+						<ul class="slogin cl">
+							<li class="username li_input">
+								<em></em>
+								<input class="v_inp" type="text" placeholder="请输入用户名" name="account" id="_account"
+								onfocus="inputFocus('_account')" onblur="inputBlur('_account','帐号不能为空')" value=""/>
+								<p class="tip" id="error_account"></p>
+								<b class="correct"></b>
+							</li>
+							<li class="psw li_input">
+								<em></em>
+								<input class="v_inp" type="password" autocomplete="off" placeholder="请输入密码" id="_pwd" name="pwd"
+								onfocus="inputFocus('_pwd')" onblur="inputBlur('_pwd','密码不能为空')"/>
+								<p class="tip" id="error_pwd" ></p>
+								<b class="error"></b>
+							</li>
+							<li class="vercode li_input">
+								<em></em>
+								<input class="v_inp" type="text" placeholder="请输入验证码" id="_code" name="_code">
+								<span class="code-box2">
+									<img title="不区分大小写。看不清楚可以换一个" id="iconcode" src="{:captcha_src()}" onclick="this.src='{:captcha_src()}'" alt=""> 
+								</span>
+								<a class="change-code" id="hyz">换一张</a> 
+								<b class="correct" id="ct"></b>
+								<p class="tip" id="error_emailcode"></p>
+							</li>
+							<li class="email li_input">
+								<em></em>
+								<input class="v_inp" type="text" placeholder="请输入邮箱地址" id="_email" onfocus="inputFocus(&#39;_email&#39;)" onblur="checkEmailOnline()" name="_email">
+								<p class="tip" id="error_email"></p>
+								<b class="correct"></b>
+							</li>
+
+							<li class="login-btn">
+								<input class="v_dark_btn sulong_btn" type="submit"  value="立即注册"/>
+							</li>	
+						</ul>
+					</form>
+				</div>
+			</div>
+			<div class="right">
+				<div class="other-method">
+					<p class="sub-title">其他方式登录</p>
+					<ul class="cl">
+						<li class="qq">
+							<a id="qqlogin" href="javascript:;"><b></b>QQ帐号</a>
+						</li>
+						<li class="wechat">
+							<a id="wechatlogin" href="javascript:;"><b></b>微信帐号</a>
+						</li>
+						<li class="sina">
+							<a id="sinalogin" href="javascript:;"><b></b>新浪微博</a>
+						</li>
+						<li class="renren">
+							<a id="renrenlogin" href="javascript:;"><b></b>人人帐号</a>
+						</li>
+						<li class="back">
+							<a id="backindex" href="{:url('index/index/index')}"><b></b>返回首页</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

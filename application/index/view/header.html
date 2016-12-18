@@ -1,0 +1,56 @@
+    <header id="header">
+        <div class="head-search">
+            <div class="search-box">
+               <form action="/product/search" method="get"><input type="text" autocomplete="off" name="searchKeywordStr" maxlength="20" placeholder="如:iphone6s" /><button type="submit">搜索</button></form><a class="close"></a>
+           </div>
+       </div>
+       <div class="wrapper">
+        <nav id="navigator" class="cl">
+        	<a href="/index.html" class="vivo-logo"><img src="__SITE_STATIC__/img/1480927453_402725.png" alt="vivo智能手机官方网站" /></a>
+            <ul class="cl">
+
+                <li><a href="{:url('index/phone/phone')}">手机</a></li>
+                <li><a href="{:url('index/parts/parts')}" >配件</a></li>
+                <li><a href="{:url('index/vb/vb')}" >V币商品</a></li>
+                <li><a href="{:url('index/service/service')}" >服务</a></li>
+                <li><a href="{:url('index/index/index')}">首页</a></li>
+                <!--
+                <li><a href="http://bbs.vivo.com.cn/" target="_blank">社区</a></li>
+                <li><a href="http://www.vivo.com.cn/" target="_blank">官网</a></li>
+            -->
+        </ul>
+        {if empty($Think.session.uid)}
+        <div class="search-user">
+            <ul class="top-quick-menu">
+                <li id="j_SearchTrigger" class="search">
+                    <a href="javascript:void(0)" rel="nofollow"><b></b></a>
+                </li>
+                <li id="j_UserMenuTrigger">
+                    <a href="{:url('admin/login/login')}" class="user"><b></b></a>
+                </li>
+                <li>
+                    <a href="{:url('index/shopcart/shopcart')}" class="shoppingcart"><b></b><span class="shopcart-num"></span></a>
+                </li>
+            </ul>
+        </div>
+        {else}
+        <div class="search-user">
+            <ul class="top-quick-menu">
+                <li id="j_SearchTrigger" class="search"><a href="javascript:void(0)" rel="nofollow"><b></b></a></li>
+                <li id="j_UserMenuTrigger">
+                    <a href="{:url('index/personal/personal')}" class="user"><b><img src="__SITE_STATIC__/img/small"></b></a>
+                    <ul class="user-menu">
+                        <li class="member-center"><a href="{:url('index/personal/personal')}"><i></i>个人中心</a><span class="icon-angular"></span></li>
+                        <li class="my-order"><a href="{:url('index/order/order')}"><i></i>我的订单</a></li>
+                        <li class="my-order"><a href="{:url('index/pay/pay')}"><i></i>充值中心</a></li>
+                        {if !empty($Think.session.level)}<li class="my-admin"><a href="{:url('admin/admin/admin')}"><i></i>管理中心</a></li>{/if}
+                        <li class="logout"><a href="{:url('admin/login/dologout')}"><i></i>退出登录</a></li>
+                    </ul>
+                </li>
+                <li><a href="{:url('index/shopcart/shopcart')}" class="shoppingcart"><b></b><span class="shopcart-num"></span></a></li>
+            </ul>
+        </div>
+        {/if}
+    </nav>
+</div>
+</header>

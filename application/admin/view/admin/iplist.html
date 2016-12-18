@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="renderer" content="webkit">
+  <title>禁止IP</title>
+  <link rel="stylesheet" href="__ADMIN_STATIC__/css/pintuer.css">
+  <link rel="stylesheet" href="__ADMIN_STATIC__/css/admin.css">
+  <link rel="stylesheet" href="__ADMIN_STATIC__/css/iplist.css">
+  <script src="__ADMIN_STATIC__/js/jquery.js"></script>
+  <script src="__ADMIN_STATIC__/js/pintuer.js"></script>
+</head>
+<body>
+
+  <div class="panel admin-panel">
+    <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
+    <div class="padding border-bottom">
+      <ul class="search" style="padding-left:10px;">
+        <li> <a class="button border-main icon-plus-square-o" href="#iplist1"> 添加IP</a> </li>
+        <li>搜索：</li>
+        <li>
+          <input type="text" placeholder="请输入搜索IP" name="keywords" class="input" style="width:250px; line-height:17px;display:inline-block" />
+          <a href="javascript:void(0)" class="button border-main icon-search" onclick="changesearch()" > 搜索</a></li>
+        </ul>
+      </div>
+      <div class="jz">
+        <div class="itemtitle" id="iplist1"><h3>禁止 IP</h3></div>
+
+        <div  class="partition">技巧提示</div>
+
+        <table class="tb" id="tips">
+          <tr>
+            <td class="tipsblock" s="1">
+              <ul type="circle">
+                <li>被限制的IP地址不能访问本站。</li>
+                <li>有效期如果设置为空则视为永久禁止。</li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+        <table class="tb">
+          <tr class="header" style="background:url(__ADMIN_STATIC__/img/bg1.png) ">
+            <th></th>
+            <th class="ip">IP 地址</th>
+            <th class="qs">起始时间</th>
+            <th class="zz">终止时间</th>
+          </tr>
+          {if $msg}
+          {foreach $closeip as $value}
+          <tr class="header" style="background:url(__ADMIN_STATIC__/img/bg1.png) ">
+            <th><input type="hidden" value="{$value['pid']}" /></th>
+            <th class="ip">{$value['ip']}</th>
+            <th class="qs">{$value['create_time']}</th>
+            <th class="zz">{$value['over_time']}</th>
+            <th><div class="button-group"><a class="button border-red" href="{:url('admin/admin/deletecloseip')}?pid={$value['pid']}"><span class="icon-trash-o"></span> 删除</a> </div></th>
+          </tr>         
+          {/foreach}
+          {/if}
+          <form name="cpform" method="post" action="{:url('admin/admin/addcloseip')}" >
+            <tr class="hover">
+              <td>新增</td>
+              <td class="td28">
+                <input type="text" class="txt" name="ip1new" value="" size="3" maxlength="3" style="width: 60px; height: 25px;">.
+                <input type="text" class="txt" name="ip2new" value="" size="3" maxlength="3" style="width: 60px; height: 25px;">.
+                <input type="text" class="txt" name="ip3new" value="" size="3" maxlength="3" style="width: 60px; height: 25px;">.
+                <input type="text" class="txt" name="ip4new" value="" size="3" maxlength="3" style="width: 60px; height: 25px;">
+              </td>
+              <td class="td28" colspan="2">有效期: <input type="text" class="txt" name="validitynew" value="30" size="3" style="width: 60px; height: 25px;"> 天</td>
+            </tr>
+          </table>
+          <tr>
+            <td colspan="4">
+              <div class="fixsel">
+                <!-- <input type="submit" class="btn" id="submit_ipbansubmit" name="ipbansubmit" title="按 Enter 键可随时提交你的修改" value="提交" style /> -->
+                <button class="button bg-main icon-check-square-o" type="submit" style="margin-left: 500px;"> 提交</button>
+              </div>
+            </td>
+          </tr>
+        </form>
+
+        <table class="table table-hover text-center">
+          <tr>
+            <td colspan="8"><div class="pagelist"> <a href="">上一页</a> <span class="current">1</span><a href="">2</a><a href="">3</a><a href="">下一页</a><a href="">尾页</a> </div></td>
+          </tr>
+        </table>
+      </div>
+    </body>
+    </html>

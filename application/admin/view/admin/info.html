@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="renderer" content="webkit">
+  <title>网站信息</title>  
+  <link rel="stylesheet" href="__ADMIN_STATIC__/css/pintuer.css">
+  <link rel="stylesheet" href="__ADMIN_STATIC__/css/admin.css">
+  <script src="__ADMIN_STATIC__/js/jquery.js"></script>
+  <script src="__ADMIN_STATIC__/js/pintuer.js"></script>  
+</head>
+<body>
+  <div class="panel admin-panel">
+    <div class="panel-head"><strong><span class="icon-pencil-square-o"></span> 网站信息</strong></div>
+    <div class="body-content">
+      <form method="post" class="form-x" enctype="multipart/form-data" action="{:url('admin/admin/doInfo')}">
+        <div class="form-group">
+          <div class="label">
+            <label>网站标题：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="stitle" {if $stitle == -1} value="" {else} value="{:$stitle}" {/if} />
+            <div class="tips"></div>
+          </div>
+        </div>
+
+
+
+        <div class="form-group">
+          <div class="label">
+            <label>网站LOGO：</label>
+          </div>
+            <input type="file" name="image" /> <br>
+ <!--          <div class="field">
+            <input type="text" id="url1" name="slogo" class="input tips" style="width:25%; float:left;"  {if $slogo == -1} value="" {else}  value="{:$slogo}"  {/if} data-toggle="hover" data-place="right" data-image=""  />
+            <input type="button" class="button bg-blue margin-left" id="image1" value="+ 浏览上传" >
+          </div> -->
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>网站域名：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="surl" {if ($surl==-1)} value="" {else}  value="{:$surl}"  {/if} />
+          </div>
+        </div>
+        <div class="form-group" style="display:none">
+          <div class="label">
+            <label>副加标题：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="sentitle" {if ($sentitle==-1)} value="" {else}  value="{:$sentitle}"  {/if} />
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>网站关键字：</label>
+          </div>
+          <div class="field">
+            <textarea class="input" name="skeywords" style="height:80px">{if ($skeywords!=-1)}{:$skeywords}{/if}</textarea>
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>网站描述：</label>
+          </div>
+          <div class="field">
+            <textarea class="input" name="sdescription">{if ($sdescription!=-1)}{:$sdescription}{/if}</textarea>
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>联系人：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="s_name" {if ($s_name==-1)} value="" {else}  value="{:$s_name}"  {/if} />
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>手机：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="s_phone" {if ($s_phone==-1)} value="" {else}  value="{:$s_phone}"  {/if} />
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>电话：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="s_tel" {if ($s_tel==-1)} value="" {else}  value="{:$s_tel}"  {/if} />
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group" style="display:none;">
+          <div class="label">
+            <label>400电话：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="s_400" {if ($s_400==-1)} value="" {else}  value="{:$s_400}"  {/if} />
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>传真：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="s_fax" {if ($s_fax==-1)} value="" {else}  value="{:$s_fax}"  {/if} />
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>QQ：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="s_qq" {if ($s_qq==-1)} value="" {else}  value="{:$s_qq}"  {/if} />
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group" style="display:none">
+          <div class="label">
+            <label>QQ群：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="s_qqu" {if ($s_qqu==-1)} value="" {else}  value="{:$s_qqu}"  {/if} />
+            <div class="tips"></div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="label">
+            <label>Email：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="s_email" {if ($s_email==-1)} value="" {else}  value="{:$s_email}"  {/if} />
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>地址：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="s_address" {if ($s_address==-1)} value="" {else}  value="{:$s_address}" {/if}  />
+            <div class="tips"></div>
+          </div>
+        </div>  
+        
+        <div class="form-group">
+          <div class="label">
+            <label>底部信息：</label>
+          </div>
+          <div class="field">
+            <textarea name="scopyright" class="input" style="height:120px;">{if ($scopyright!=-1)}{:$scopyright}{/if}</textarea>
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label></label>
+          </div>
+          <div class="field">
+            <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</body></html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://shop.vivo.com.cn/my/vcoin -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<meta http-equiv="x-ua-compatible" content="IE=edge">
+<title>申请开店</title>
+<meta name="keywords" content="only手机商城">
+<meta name="description" content="only手机商城">
+
+<link href="__SITE_STATIC__/css/global.css" rel="stylesheet" type="text/css">
+<link href="__SITE_STATIC__/css/layout.css" rel="stylesheet" type="text/css">
+<link href="__SITE_STATIC__/css/dialog.css" rel="stylesheet" type="text/css">
+
+
+<link href="__SITE_STATIC__/css/member-center.css" rel="stylesheet" type="text/css">
+<link href="__SITE_STATIC__/css/member-vcoin.css" rel="stylesheet" type="text/css">
+
+    <!--[if lt IE 9]>
+    <script src="https://swsdl.vivo.com.cn/vivoshop/web/dist/js/bower_components/html5shiv/dist/html5shiv.min_23e126e.js"></script>
+    <![endif]-->
+
+</head>
+<body class="member-center">
+    {include file="header" /}
+    <div id="content" class="cl">
+        <div class="wrapper">
+            <div class="crumbs">您的位置：<a href="{:url('index/index/index')}">首页</a><b></b><a href="{:url('index/personal/personal')}">会员中心</a><b></b>申请开店</div>
+        </div>
+        <div class="wrapper">
+            <aside class="menu-bar">
+                <ul class="portrait-box">
+                    <li>
+                        <a href="{:url('index/data/data')}" title="编辑资料">
+                            <img width="160" src="__SITE_STATIC__/img/big">
+                        </a>
+                    </li>
+                    <li class="mem-name member-menu-nickName"><i class="icon-mem"></i>{$Think.session.username}</li>
+                    <li class="vcoin-info">我的V币：<a href="http://shop.vivo.com.cn/my/vcoin"><span class="red member-vcoin-number">{$Think.Session.vintegral}</span></a> V币</li>
+                </ul>
+                <dl id="j_MyCenterMenus" class="menu">
+                    <dt class="menu-title"><i class="icon-deal"></i>交易管理</dt>
+                    <dd class="menu-item"><a href="{:url('index/order/order')}">我的订单</a></dd>
+                    <dd class="menu-item"><a href="{:url('index/refunds/refunds')}">退款/退货</a></dd>
+                    <dt class="menu-title"><i class="icon-deal"></i>充值中心</dt>
+                    <dd class="menu-item"><a href="{:url('index/pay/pay')}">立即充值</a></dd>
+                    <dt class="menu-title"><i class="icon-evaluation"></i>评价管理</dt>
+                    <dd class="menu-item"><a href="#">未评价商品</a></dd>
+                    <dt class="menu-title"><i class="icon-account"></i>我的账户</dt>
+                    <dd class="menu-item"><a href="{:url('index/data/data')}">个人资料</a></dd>
+                    <dd class="menu-item"><a href="{:url('index/address/address')}">收货地址</a></dd>
+                    <dd class="menu-item"><a href="{:url('index/vcoin/vcoin')}">我的V币</a></dd>         
+                    <dt class="menu-title"><i class="icon-account"></i>权限升级</dt>
+                    <dd class="menu-item"><a href="{:url('index/store/store')}">申请开店</a></dd>
+                </dl>
+            </aside> 
+            <form method="post" action="{:url('index/store/dostore')}">  
+                <article class="content">
+                    <dl>
+                        <dt class="module-title">申请开店</dt>
+                        <dd class="remanent" style="font-size: 15px; margin-top: 80px;">
+                            <div style="margin: 20px 195px;">姓名：<input type="text" name="realname" value="" placeholder="请输入您的真实姓名" style="width: 300px; height: 30px;"></div>
+                            <div style="margin: 20px 150px;">身份证号码：<input type="text" name="idcard" value="" placeholder="请输入您的身份证号码" style="width: 300px; height: 30px;"></div>
+                            <div style="margin: 20px 195px;">性别：<label><input type="radio" name="sex" checked="true" value="1">男</label>&nbsp;<label><input type="radio" name="sex" value="0">女</label></div>
+                            <div style="margin: 20px 187px;">Email：<input type="text" name="email" value="" placeholder="请输入您的邮箱"style="width: 300px; height: 30px;"></div>
+                            <div style="margin: 30px 240px;"><input type="submit" value="申请开店" style="width: 100px;height: 35px;border: solid 1px #4f75cd;background-color: #4f75cd;font-size: 16px;color: #fff;border-radius: 3px;"></div>
+                        </dd>
+                    </dl>
+                    <div class="span12 clearfix">
+
+                    </div>
+                </article>
+            </form> 
+        </div>
+    </div>
+    {include file="footer" /}
+    <div id="side-bar">
+        <ul>
+            <li><a class="service" id="J_online-service" target="_blank" href="http://crm2.qq.com/page/portalpage/wpa.php?uin=4007161118&amp;aty=0&amp;a=0&amp;curl=&amp;ty=1"></a></li>
+            <li>
+                <a class="qrcode">
+                    <div class="qrcode-container">
+                        <img src="__SITE_STATIC__/img/qrcode_6a6b792.png">
+                        <p>支付宝扫码<br>关注享最新活动福利</p>
+                    </div>
+                </a>
+            </li>
+            <li class="last">
+                <a class="feedback" id="J_feedback">
+                    <div class="feedback-container" id="J_feedback-container">
+                        <span class="close" id="J_feedback-close"></span>
+                        <p class="title">意见反馈</p>
+                        <div class="problem-container">
+                            <p id="J_feedback-typeDesc" class="problem">请选择问题类型</p>
+                            <select id="J_feedback-typeSelect">
+                                <option value="0" disabled="disabled" selected="selected">请选择问题类型</option>
+                                <option value="1">购物流程（页面浏览、下单、支付等）</option>
+                                <option value="2">服务问题（物流时效、客服态度、退换货、售后维修等）</option>
+                                <option value="3">商品质量（手机、配件问题）</option>
+                                <option value="4">优化建议（活动、服务、购物体验等）</option>
+                                <option value="5">其他问题</option>
+                            </select>
+                        </div>
+                        <textarea id="J_feedback-content" class="" maxlength="200" placeholder="请输入您的建议或具体问题，我们将不断改进。"></textarea>
+                        <input id="J_feedback-contact" class="contact-way" type="text" maxlength="50" placeholder="邮箱或者only账户 （选填）">
+                        <span id="J_feedback-kaptchaButton" class="change-code">看不清，换一张</span>
+                        <img id="J_feedback-kaptchaImage" class="code">
+                        <input id="J_feedback-securityCode" class="code-input" type="text" placeholder="输入右侧验证码">
+                        <p id="J_feedback-validateMsg" class="error">请输入正确的信息</p>
+                        <button id="J_feedback-submitButton">提交</button>
+                    </div>
+                </a>
+            </li>
+            <li class="hide" id="J_backtop"><a class="backtop"></a></li>
+        </ul>
+    </div><script src="__SITE_STATIC__/js/hm.js" async=""></script><script>
+    var webCtx = "";
+    var passportLoginUrlPrefix = "https://passport.vivo.com.cn/v3/web/login/authorize?client_id=3&redirect_uri=";
+</script>
+<script src="__SITE_STATIC__/js/jquery.min_6163309.js"></script>
+<script src="__SITE_STATIC__/js/jquery.cookie_a5283b2.js"></script>
+<script src="__SITE_STATIC__/js/jquery.lazyload_546c1da.js"></script>
+<script src="__SITE_STATIC__/js/jquery-placeholder_fb6154c.js"></script>
+<script src="__SITE_STATIC__/js/vivo-common_38aa2f0.js"></script>
+<script src="__SITE_STATIC__/js/dialog_6a2b3fb.js"></script>
+<script src="__SITE_STATIC__/js/vivo-stat_265b49b.js"></script>
+<script src="__SITE_STATIC__/js/login_confirm_485e7b4.js"></script>
+<script src="__SITE_STATIC__/js/query-vcoin_32d1f89.js"></script>
+<script>
+    var appCtx = {};
+    appCtx.webCtx = "";
+</script>
+<script src="__SITE_STATIC__/js/myvcoin_list_7f1e1a0.js" type="text/javascript"></script>
+
+
+<script>
+    //百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?0a38f90134ba281b974d46dfeec121e0";
+        hm.async = true;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+</body></html>

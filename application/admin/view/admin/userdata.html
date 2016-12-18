@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="renderer" content="webkit">
+	<title>用户资料</title>
+	<link rel="stylesheet" href="__ADMIN_STATIC__/css/pintuer.css">
+	<link rel="stylesheet" href="__ADMIN_STATIC__/css/admin.css">
+	<script src="__ADMIN_STATIC__/js/jquery.js"></script>
+	<script src="__ADMIN_STATIC__/js/pintuer.js"></script>
+</head>
+<body>
+	<div class="panel admin-panel">
+		<div class="panel-head"><strong><span class="icon-pencil-square-o"></span> 网站信息</strong></div>
+		<div class="body-content">
+			<form method="post" class="form-x" enctype="multipart/form-data"  action="{:url('admin/admin/alterUserdata')}">
+				<div class="tableContainer" style="min-height: 80px;">	
+					<div id="mainContent" style="width: 100%; height: 100%; min-height: 80px; padding-left:80px; background: rgb(255, 255, 255);" class="tablePanel"> 
+						<div class="navInfo"><img src="{if $info->avatar}{$info->avatar}{else}__ADMIN_STATIC__/img/bz.png{/if}" style=" width:57px; height:57px; float:left;border-radius:50%;"/><div class="navInfoDiv"><span style="padding-left: 70px; display: block; padding-top:15px; font-size: 20px;  ">修改个人资料</span></div></div>
+						<div class="clearfloat"></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="label">
+						<label>账号：</label>
+						<input type="hidden" name="uid" value="{$info->uid}">
+					</div>
+					<div class="field">
+						<!--<input type="text" class="input" name="stitle" value=""readonly />-->
+						<div style="margin-top: 8px;">{$info->username}</div>
+						<div class="tips"></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="label">
+						<label>头像：</label>
+					</div>
+            		<input type="file" name="image" /> <br>
+<!-- 					<div class="field">
+						<input type="text" id="url1" name="avatar" class="input tips" style="width:25%; float:left;"  data-toggle="hover" data-place="right" data-image="{$info->avatar}" value="{$info->avatar}" />
+						<input type="button" class="button bg-blue margin-left" id="image1" value="+ 浏览上传" >
+					</div> -->
+				</div>
+<!-- 				<div class="form-group">
+					<div class="label">
+						<label>性别：</label>
+					</div>
+					<div class="field" style="margin-top: 8px;">
+						<input name="gender" type="radio" value="1" id="man">男
+						<input name="gender" type="radio" value="2" id="woman">女
+						<div class="tips"></div>
+					</div>
+				</div> -->
+<!-- 				<div class="form-group" style="display:none">
+					<div class="label">
+						<label>副加标题：</label>
+					</div>
+					<div class="field">
+						<input type="text" class="input" name="sentitle" />
+						<div class="tips"></div>
+					</div>
+				</div> -->
+				<div class="form-group">
+					<div class="label">
+						<label>真实姓名：</label>
+					</div>
+					<div class="field">
+						<input type="text" class="input" name="realname" value="{$info->realname}"/>
+						<div class="tips"></div>
+					</div>
+				</div>
+<!-- 				<div class="form-group">
+					<div class="label">
+						<label>生日：</label>
+					</div>
+					<div class="field">
+						<div style="margin-top: 8px;">
+							<select name="birtdyear" id="birtdyear" class="ps" onchange="showbirtdday();">
+								<option selected value="">年</option>
+								<option value="">1990</option>
+								<option value="">1991</option>
+								<option value="">1992</option>
+								<option value="">1993</option>
+								<option value="">1994</option>
+								<option value="">1995</option>
+								<option value="">1996</option>
+								<option value="">1997</option>
+								<option value="">1998</option>
+								<option value="">1999</option>
+								<option value="">2000</option>
+								<option value="">2001</option>
+								<option value="">2002</option>
+								<option value="">2003</option>
+								<option value="">2004</option>
+								<option value="">2005</option>
+								<option value="">2006</option>
+								<option value="">2007</option>
+								<option value="">2008</option>
+								<option value="">2009</option>
+
+							</select>&nbsp;
+							<select name="birtdmontd" id="birtdmontd" class="ps">
+								<option selected value="">月</option>
+								<option value="">1</option>
+								<option value="">2</option>
+								<option value="">3</option>
+								<option value="">4</option>
+								<option value="">5</option>
+								<option value="">6</option>
+								<option value="">7</option>
+								<option value="">8</option>
+								<option value="">9</option>
+								<option value="">10</option>
+								<option value="">11</option>
+								<option value="">12</option>
+							</select>&nbsp;
+							<select name="birtdday" id="birtdday" class="ps">
+								<option selected value="">日</option>
+								<option value="">1</option>
+								<option value="">2</option>
+								<option value="">3</option>
+								<option value="">4</option>
+								<option value="">5</option>
+								<option value="">6</option>
+								<option value="">7</option>
+								<option value="">8</option>
+								<option value="">9</option>
+								<option value="">10</option>
+								<option value="">11</option>
+								<option value="">12</option>
+								<option value="">13</option>
+								<option value="">14</option>
+								<option value="">15</option>
+								<option value="">16</option>
+								<option value="">17</option>
+								<option value="">18</option>
+								<option value="">19</option>
+								<option value="">20</option>
+								<option value="">21</option>
+								<option value="">22</option>
+								<option value="">23</option>
+								<option value="">24</option>
+								<option value="">25</option>
+								<option value="">26</option>
+								<option value="">27</option>
+								<option value="">28</option>
+								<option value="">29</option>
+								<option value="">30</option>
+								<option value="">31</option>
+							</select>
+						</div>
+					</div>
+				</div> -->
+				<div class="form-group">
+					<div class="label">
+						<label>手机：</label>
+					</div>
+					<div class="field">
+						<input type="text" class="input" name="phone" value="{$info->phone}"/>
+						<div class="tips"></div>
+					</div>
+				</div>
+<!-- 				<div class="form-group">
+					<div class="label">
+						<label>电话：</label>
+					</div>
+					<div class="field">
+						<input type="text" class="input" name="s_tel" />
+						<div class="tips"></div>
+					</div>
+				</div>
+				<div class="form-group" style="display:none;">
+					<div class="label">
+						<label>400电话：</label>
+					</div>
+					<div class="field">
+						<input type="text" class="input" name="s_400" />
+						<div class="tips"></div>
+					</div>
+				</div> -->
+		        <div class="form-group">
+		          <div class="label">
+		            <label>地址：</label>
+		          </div>
+		          <div class="field">
+		            <input type="text" class="input" name="mailaddr" value="{$info->mailaddr}"/>
+		            <div class="tips"></div>
+		          </div>
+		        </div>
+				<div class="form-group">
+					<div class="label">
+						<label>QQ：</label>
+					</div>
+					<div class="field">
+						<input type="text" class="input" name="qq" value="{$info->qq}"/>
+						<div class="tips"></div>
+					</div>
+				</div>
+<!-- 				<div class="form-group" style="display:none">
+					<div class="label">
+						<label>QQ群：</label>
+					</div>
+					<div class="field">
+						<input type="text" class="input" name="s_qqu" />
+						<div class="tips"></div>
+					</div>
+				</div> -->
+
+				<div class="form-group">
+					<div class="label">
+						<label>Email：</label>
+					</div>
+					<div class="field">
+						<input type="text" class="input" name="email" value="{$info->email}"/>
+						<div class="tips"></div>
+					</div>
+				</div>
+<!-- 			<div class="form-group">
+					<div class="label">
+						<label>位置：</label>
+					</div>
+					<div class="field">
+						<div style="margin-top: 8px;">
+							<select name="province" id="place" class="ps">
+								<option value="">-省份-</option>
+								<option did="1" value="北京市" >北京市</option>
+								<option did="2" value="天津市" >天津市</option>
+								<option did="3" value="河北省" >河北省</option>
+								<option did="4" value="山西省" >山西省</option>
+								<option did="5" value="内蒙古自治区" >内蒙古自治区</option>
+								<option did="6" value="辽宁省" >辽宁省</option>
+								<option did="7" value="吉林省" >吉林省</option>
+								<option did="8" value="黑龙江省" >黑龙江省</option>
+								<option did="9" value="上海市" >上海市</option>
+								<option did="10" value="江苏省" >江苏省</option>
+								<option did="11" value="浙江省" >浙江省</option>
+								<option did="12" value="安徽省" >安徽省</option>
+								<option did="13" value="福建省" >福建省</option>
+								<option did="14" value="江西省" >江西省</option>
+								<option did="15" value="山东省" >山东省</option>
+								<option did="16" value="河南省" >河南省</option>
+								<option did="17" value="湖北省" >湖北省</option>
+								<option did="18" value="湖南省" >湖南省</option>
+								<option did="19" value="广东省" >广东省</option>
+								<option did="20" value="广西壮族自治区" >广西壮族自治区</option>
+								<option did="21" value="海南省" >海南省</option>
+								<option did="22" value="重庆市" >重庆市</option>
+								<option did="23" value="四川省" >四川省</option>
+								<option did="24" value="贵州省" >贵州省</option>
+								<option did="25" value="云南省" >云南省</option>
+								<option did="26" value="西藏自治区" >西藏自治区</option>
+								<option did="27" value="陕西省" >陕西省</option>
+								<option did="28" value="甘肃省" >甘肃省</option>
+								<option did="29" value="青海省" >青海省</option>
+								<option did="30" value="宁夏回族自治区" >宁夏回族自治区</option>
+								<option did="31" value="新疆维吾尔自治区" >新疆维吾尔自治区</option>
+								<option did="32" value="台湾省" >台湾省</option>
+								<option did="33" value="香港特别行政区" >香港特别行政区</option>
+								<option did="34" value="澳门特别行政区" >澳门特别行政区</option>
+								<option did="35" value="海外" >海外</option>
+								<option did="36" value="其他" >其他</option>
+							</select>
+						</div>
+						<div class="tips"></div>
+					</div>
+				</div>   -->
+
+				<div class="form-group">
+					<div class="label">
+						<label>创建时间：</label>
+					</div>
+					<div class="field">
+						<div style="margin-top: 8px">{$info->create_time}</div>
+						<div class="tips"></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="label">
+						<label>更新时间：</label>
+					</div>
+					<div class="field">
+						<div style="margin-top: 8px">{$info->update_time}</div>
+						<div class="tips"></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="label">
+						<label>个性签名：</label>
+					</div>
+					<div class="field">
+						<textarea name="signature" class="input" style="height:120px;">{$info->signature}</textarea>
+						<div class="tips"></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="label">
+						<label></label>
+					</div>
+					<div class="field">
+						<button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

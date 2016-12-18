@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="renderer" content="webkit">
+  <title>网站信息</title>  
+  <link rel="stylesheet" href="__ADMIN_STATIC__/css/pintuer.css">
+  <link rel="stylesheet" href="__ADMIN_STATIC__/css/admin.css">
+  <script src="__ADMIN_STATIC__/js/jquery.js"></script>
+  <script src="__ADMIN_STATIC__/js/pintuer.js"></script>  
+</head>
+<body>
+  <div class="panel admin-panel">
+    <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong><span style="font-size:12px;color:red;"> &nbsp; <b>【注】</b>版块分类为0时，表示当前分类为版块分类，商品分类为0时表示当前分类为商品分类或者版块分类，否则只是普通分类</span></div>
+    <div class="padding border-bottom">  
+      <a class="button border-yellow" href="#add"><span class="icon-plus-square-o"></span> 添加分类</a>
+      <a class="button border-main" href="#alter"><span class="icon-pencil-square-o"></span> 修改分类</a>
+    </div> 
+    {if !empty($cla)}
+    <table class="table table-hover text-center">
+      <tr>
+        <th width="5%">ID</th>     
+        <th>分类名称</th>  
+        <th>版块分类</th>    
+        <th>商品分类</th>    
+        <th>是否显示分类</th>  
+        <th width="250">操作</th>
+      </tr>
+      {if $msg}
+      {foreach :$cla as $value}
+      <tr>
+        <td id="cid">{:$value->cid}</td>      
+        <td id="classname">{:$value->classname}</td>  
+        <td id="fatherid">{:$value->fatherid}</td>      
+        <td id="goodsclass">{:$value->goodsclass}</td>  
+        <td id="isdisplay">{if $value->isdisplay}是{else}否{/if}</td>    
+        <td>
+          <div class="button-group">
+            <a type="button" class="button border-main" href="#alter" id="alterclass"><span class="icon-edit"></span>修改</a>
+            <a class="button border-red" href="{:url('admin/admin/delColumn')}?cid={:$value->cid}"><span class="icon-trash-o"></span> 删除</a>
+          </div>
+        </td>
+      </tr> 
+      {/foreach}
+      {/if}
+    </table>
+    {/if}
+  </div>
+  <script>
+    function del(id){
+     if(confirm("您确定要删除吗?")){
+
+     }
+   }
+ </script>
+ <div class="panel admin-panel margin-top" id="add">
+  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加分类</strong></div>
+  <div class="body-content">
+    <form method="post" class="form-x" action="{:url('admin/admin/addColumn')}">   
+      <input type="hidden" name="id"  value="" />  
+      <div class="form-group">
+        <div class="label">
+          <label>分类名称</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" name="title" value="" data-validate="required:请输入分类名称" />         
+          <div class="tips"></div>
+        </div>
+      </div> 
+      <div class="form-group">
+        <div class="label">
+          <label>版块分类id</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" name="fid" value="" data-validate="required:请输入版块分类ID" />
+          <div class="tips"></div>
+        </div>
+      </div> 
+      <div class="form-group">
+        <div class="label">
+          <label>商品分类id</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" name="gid" value="" data-validate="required:请输入商品分类ID" />         
+          <div class="tips"></div>
+        </div>
+      </div> 
+      <div class="form-group">
+        <div class="label">
+          <label>是否显示</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" name="isshow" value="" id="alter_2" placeholder="0代表不显示，1代表显示，默认为1" />
+          <div class="tips"></div>
+        </div>
+      </div> 
+      <div class="form-group">
+        <div class="label">
+          <label></label>
+        </div>
+        <div class="field">
+          <button class="button bg-main icon-check-square-o" type="submit"> 添加</button>
+        </div>
+      </div>
+    </form>
+
+
+    <div class="panel admin-panel margin-top" id="alter">
+      <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>修改分类</strong></div>
+      <div class="body-content">
+        <form method="post" class="form-x" action="{:url('admin/admin/alterColumn')}"> 
+          <input class="hidden"/> 
+          <div class="form-group">
+            <div class="label">
+              <label>分类ID</label>
+            </div>
+            <div class="field">
+              <input class="input w50" type="text" name="cid"  id="alter_1" value="" data-validate="required:请输入要修改的ID"/>  
+              <div class="tips"></div>
+            </div>
+          </div>  
+
+          <div class="form-group">
+            <div class="label">
+              <label>分类名称</label>
+            </div>
+            <div class="field">
+              <input type="text" class="input w50" name="title" value="" id="alter_2" data-validate="required:请输入分类名称" />         
+              <div class="tips"></div>
+            </div>
+          </div> 
+          <div class="form-group">
+            <div class="label">
+            <label>版块分类ID</label>
+            </div>
+            <div class="field">
+              <input type="text" class="input w50" name="fid" value="" id="alter_2" data-validate="required:请输入版块分类ID" />         
+              <div class="tips"></div>
+            </div>
+          </div> 
+          <div class="form-group">
+            <div class="label">
+              <label>商品分类ID</label>
+            </div>
+            <div class="field">
+              <input type="text" class="input w50" name="gid" value="" id="alter_2" data-validate="required:请输入商品分类ID" />         
+              <div class="tips"></div>
+            </div>
+          </div> 
+          <div class="form-group">
+            <div class="label">
+              <label>是否显示</label>
+            </div>
+            <div class="field">
+              <input type="text" class="input w50" name="isshow" value="" id="alter_2" placeholder="0代表不显示，1代表显示，默认为1" data-validate="required:请输入代号（0或者1）" />
+              <div class="tips"></div>
+
+            </div>
+          </div> 
+          <div class="form-group">
+            <div class="label">
+              <label></label>
+            </div>
+            <div class="field">
+              <button class="button bg-main icon-check-square-o" type="submit"> 修改</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body></html>
